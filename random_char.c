@@ -6,7 +6,7 @@
 /*   By: manuelma <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 16:57:43 by manuelma          #+#    #+#             */
-/*   Updated: 2024/10/22 23:56:28 by manuelma         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:41:05 by manuelma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@ char  *random_str(int len, char *option)
 	srand(time(NULL));
 	output = malloc(len * sizeof(char));
 	i = 0;
+	if (option[0] == '-' && ((rand() % 100) % 2))
+	{
+		option++;
+		output[i++] = '-';
+	}
 	while (i < len) 
 	{
-		if((option[0] == 'a' || option[0] == 'A') && option[1] == '\0')
+		if ((option[0] == 'a' || option[0] == 'A') && option[1] == '\0')
 			output[i] = option[0] + (rand() % 26);
 		if (option[0] == '0' && option[1] == '\0')
-			output[i] = option[0] + (rand() % 9);	
+			output[i] = option[0] + (rand() % 9);
 		if (option[0] == 'p' && option[1] == '\0')
 			output[i] = 32 + (rand() % 94);
 		if (option[0] == '\0')
